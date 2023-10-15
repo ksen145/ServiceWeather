@@ -14,10 +14,18 @@ class ModelsController():
         new_city.name = city
 
         coordinates = SearchGeoCity.search(city)
+
+        if isinstance(coordinates, int):
+            return coordinates
+
         new_city.lat = coordinates[0]
         new_city.lon = coordinates[1]
 
         data = RequestWeather.request(coordinates)
+
+        if isinstance(data, int):
+            return data
+
         new_city.temp = data.get('temp')
         new_city.wind_speed = data.get('wind_speed')
         new_city.pressure_mm = data.get('pressure_mm')
@@ -38,6 +46,10 @@ class ModelsController():
 
             coordinates = [model_city.lat, model_city.lon]
             data = RequestWeather.request(coordinates)
+
+            if isinstance(data, int):
+                return data
+
             model_city.temp = data.get('temp')
             model_city.wind_speed = data.get('wind_speed')
             model_city.pressure_mm = data.get('pressure_mm')
