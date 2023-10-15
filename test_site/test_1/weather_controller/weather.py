@@ -14,9 +14,11 @@ class Weather(WeatherABC):
 
     def get_weather(city):
 
-        model_citys = City.objects.all()
+        model_citys = City.objects.filter(name=city).values()
 
-        if city not in model_citys:
+        list_result = [entry for entry in model_citys]
+
+        if len(list_result) == 0:
 
             data = ModelsController.new_model(city)
 

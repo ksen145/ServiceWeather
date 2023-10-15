@@ -10,10 +10,10 @@ class SearchGeoCity():
             coordinates = Yandex(api_key=Config.geo_yandex_api_key).geocode(city)
 
             if coordinates is None:
-                return 500
+                return 2
 
             lat, lon = coordinates.latitude, coordinates.longitude
             return [lat, lon]
 
         except:
-            return 401
+            return 1
