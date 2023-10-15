@@ -1,6 +1,6 @@
 import requests
 import json
-from ....config import Config
+from .config import Config
 
 
 class RequestWeather():

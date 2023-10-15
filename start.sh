@@ -1,2 +1,1 @@
-cd test_site
-python3 manage.py runserver
+python3 test_site/manage.py runserver
