@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from ..models import City
+from ..models_controller import ModelsController
 
 
 class WeatherABC(ABC):
@@ -16,8 +17,13 @@ class Weather(WeatherABC):
         model_citys = City.objects.all()
 
         if city not in model_citys:
-            print("ok")
-        else:
-            print("error")
 
-        return {'temp': 1, 'wind_speed': 1, 'pressure_mm': 1}
+            data = ModelsController.new_model(city)
+
+            return data
+
+        else:
+
+            data = ModelsController.update_model(city)
+
+            return data
